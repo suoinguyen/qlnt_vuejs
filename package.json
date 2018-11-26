@@ -15,6 +15,7 @@
     "animate.css": "^3.7.0",
     "chart.js": "^2.7.3",
     "chartist": "^0.11.0",
+    "firebase": "^5.5.9",
     "font-awesome": "^4.7.0",
     "gaugeJS": "^1.3.6",
     "google-maps": "^3.3.0",

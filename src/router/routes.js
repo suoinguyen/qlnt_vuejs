@@ -39,18 +39,7 @@ const Page500 = resolve => { require.ensure(['../pages/Page500.vue'], ()=>{ reso
 
 
 export const routes = [
-    {
-        path : '',
-        name: 'home',
-        components:{
-            default: Dashboard
-        }
-    },
-    {   path : '/dashboard',
-        components:{
-            default: Dashboard
-        }
-    },
+
 
     // // UI Components
     { path : '/components/buttons', name: 'buttons', component: Buttons },
@@ -157,6 +146,33 @@ export const routes = [
         meta: {
             default: false,
             title: 'Login'
+        }
+    },
+
+    {
+        path : '',
+        components:{
+            default: Dashboard
+        },
+        meta: {
+            authRequired: true
+        }
+    },
+    {
+        path : '/',
+        components:{
+            default: Dashboard
+        },
+        meta: {
+            authRequired: true
+        }
+    },
+    {   path : '/dashboard',
+        components:{
+            default: Dashboard
+        },
+        meta: {
+            authRequired: true
         }
     },
 ];

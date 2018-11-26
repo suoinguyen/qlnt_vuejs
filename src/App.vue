@@ -1,7 +1,16 @@
 <template>
     <div id="app">
-        <auth-layout v-if="isAuth"></auth-layout>
-        <div class="admin-container" v-else>
+        <loading :active.sync="isLoading"
+                 :can-cancel="true"
+                 :is-full-page="true"
+                 :loader="'spinner'"
+                 :color="'#007bff'"
+                 :width="100"
+                 :height="100"
+                 :opacity=1>
+        </loading>
+        <auth-layout v-if="userLogged === null"></auth-layout>
+        <div class="admin-container" v-else-if="userLogged !== false">
             <Sidebar :navItems="nav"/>
             <div id="right-panel" class="right-panel">
                 <Header/>
@@ -20,34 +29,44 @@
     import Header from './components/Header.vue'
     import Sidebar from './components/Sidebar.vue'
     import AuthLayout from './layouts/AuthLayout.vue';
-    import { mapActions } from 'vuex'
+    import {mapActions} from 'vuex'
+    import {mapState} from 'vuex'
+
+    // Import component
+    import Loading from 'vue-loading-overlay';
+    // Import stylesheet
+    import 'vue-loading-overlay/dist/vue-loading.css';
 
     export default {
         data() {
             return {
-                nav: nav.items
+                nav: nav.items,
+                isLoading: true,
             }
         },
         components: {
             AuthLayout,
             Header,
-            Sidebar
+            Sidebar,
+            Loading
         },
-        methods:{
+        methods: {
             ...mapActions([
                 'updateUser'
-            ])
+            ]),
         },
         computed: {
-            name() {
-                return this.$route.name
-            },
-            list() {
-                return this.$route.matched
-            },
-            isAuth() {
-                return this.$route.path.match('auth')
-            }
+            ...mapState({
+                userLogged: function (state) {
+                    setTimeout(() => {
+                        this.isLoading = false
+                    }, 1000)
+                    return state.userLogged
+                }
+            })
+        },
+        mounted() {
+
         },
     }
 </script>
