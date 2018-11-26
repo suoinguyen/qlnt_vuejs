@@ -147,5 +147,16 @@ export const routes = [
     { path: '/redirect-me', redirect: { name: 'home' } },
 
     // 404 redirect to home
-    { path: '*', redirect: { name: 'Page404', component: Page404 }  }
+    { path: '*', redirect: { name: 'Page404', component: Page404 }  },
+
+    //=========================================//
+    {
+        path: '/login',
+        component: Login,
+        name: 'login',
+        meta: {
+            default: false,
+            title: 'Login'
+        }
+    },
 ];
