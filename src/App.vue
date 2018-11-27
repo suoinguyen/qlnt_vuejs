@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <loading :active.sync="isLoading"
+        <!--<loading :active.sync="isLoading"
                  :can-cancel="true"
                  :is-full-page="true"
                  :loader="'spinner'"
@@ -8,7 +8,7 @@
                  :width="100"
                  :height="100"
                  :opacity=1>
-        </loading>
+        </loading>-->
         <auth-layout v-if="userLogged === null"></auth-layout>
         <div class="admin-container" v-else-if="userLogged !== false">
             <Sidebar :navItems="nav"/>

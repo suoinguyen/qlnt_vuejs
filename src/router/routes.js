@@ -151,21 +151,11 @@ export const routes = [
 
     {
         path : '',
-        components:{
-            default: Dashboard
-        },
-        meta: {
-            authRequired: true
-        }
+        redirect: '/dashboard'
     },
     {
         path : '/',
-        components:{
-            default: Dashboard
-        },
-        meta: {
-            authRequired: true
-        }
+        redirect: '/dashboard'
     },
     {   path : '/dashboard',
         components:{
