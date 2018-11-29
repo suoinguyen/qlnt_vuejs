@@ -1,14 +1,5 @@
 <template>
     <div id="app">
-        <!--<loading :active.sync="isLoading"
-                 :can-cancel="true"
-                 :is-full-page="true"
-                 :loader="'spinner'"
-                 :color="'#007bff'"
-                 :width="100"
-                 :height="100"
-                 :opacity=1>
-        </loading>-->
         <auth-layout v-if="userLogged === null"></auth-layout>
         <div class="admin-container" v-else-if="userLogged !== false">
             <Sidebar :navItems="nav"/>
@@ -26,16 +17,15 @@
 
 <script>
     import nav from './nav'
+    import {mapActions, mapState} from 'vuex'
+
+    import Loading from 'vue-loading-overlay';
+    import 'vue-loading-overlay/dist/vue-loading.css';
+
+    //Component
     import Header from './components/Header.vue'
     import Sidebar from './components/Sidebar.vue'
     import AuthLayout from './layouts/AuthLayout.vue';
-    import {mapActions} from 'vuex'
-    import {mapState} from 'vuex'
-
-    // Import component
-    import Loading from 'vue-loading-overlay';
-    // Import stylesheet
-    import 'vue-loading-overlay/dist/vue-loading.css';
 
     export default {
         data() {

@@ -1,1 +1,2 @@
 export const UPDATE_USER = 'UPDATE_USER'
+export const UPDATE_LOADING_PAGE = 'UPDATE_LOADING_PAGE'

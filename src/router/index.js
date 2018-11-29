@@ -4,15 +4,12 @@ import { routes } from './routes';
 import {firebaseApp} from '../firebaseApp';
 import store from '../store';
 
-// Import component
 import Loading from 'vue-loading-overlay';
-// Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
-// Init plugin
+
+Vue.use(VueRouter);
 Vue.use(Loading);
 
-// Router
-Vue.use(VueRouter);
 const router = new VueRouter({
     routes,
     linkActiveClass: 'open active',
@@ -20,11 +17,19 @@ const router = new VueRouter({
     mode: 'history'
 });
 
-
-
 router.beforeEach((to, from, next) => {
-    if (window.globalLoading.loadingOk === false){
-        window.globalLoading.show();
+    var loading = false;
+    if (store.state.loadingPage === false){
+        loading = Vue.$loading.show({
+            // Optional parameters
+            container: null,
+            canCancel: true,
+            height: 100,
+            width: 100,
+            color: '#007bff',
+            opacity: 1
+        });
+        store.dispatch('updateLoadingPage', loading)
     }
 
     let getUserLogged = new Promise((resolve, reject) => {
@@ -57,9 +62,14 @@ router.beforeEach((to, from, next) => {
                 next()
             }
         }
-        setTimeout(function () {
-            window.globalLoading.loadingOk.hide();
-        }, 700)
+        if (user !== false){
+            setTimeout(function () {
+                if (store.state.loadingPage instanceof Vue){
+                    store.state.loadingPage.hide();
+                    store.dispatch('updateLoadingPage', false)
+                }
+            }, 700)
+        }
     }
 
     checkUserLogged()

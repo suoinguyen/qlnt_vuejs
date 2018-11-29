@@ -32,6 +32,12 @@
 </template>
 
 <script>
+    import Vue from 'vue';
+    import Loading from 'vue-loading-overlay';
+    import 'vue-loading-overlay/dist/vue-loading.css';
+
+    Vue.use(Loading)
+
     export default {
         name: 'Login',
         data: function () {
@@ -47,7 +53,16 @@
         },
         methods: {
             async onSubmit () {
-                window.globalLoading.show();
+                let loading = this.$loading.show({
+                    // Optional parameters
+                    container: null,
+                    canCancel: true,
+                    height: 100,
+                    width: 100,
+                    color: '#007bff',
+                    opacity: 1
+                });
+                this.$store.dispatch('updateLoadingPage', loading);
                 const auth = await this.$auth.login(this.email, this.pass)
                 this.$router.replace(this.nextRoute)
             }

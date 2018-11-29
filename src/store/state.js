@@ -1,4 +1,5 @@
 const state = {
-    userLogged: false
+    userLogged: false,
+    loadingPage: false
 }
 export default state

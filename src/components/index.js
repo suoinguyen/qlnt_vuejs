@@ -24,12 +24,12 @@ Vue.component( 'basix-counter', AnimateNumber )
 Vue.component( 'bootstrap-progress-bar', BootstrapProgressBar )
 
 
-export {
+export default {
   Alert,
   SidebarCollapse,
   CardTemplate,
   AnimateNumber,
   ProgressBars,
   BootstrapProgressBar,
-  Tables
+  // Tables
 }
