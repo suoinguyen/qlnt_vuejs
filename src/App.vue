@@ -19,8 +19,8 @@
     import nav from './nav'
     import {mapActions, mapState} from 'vuex'
 
-    import Loading from 'vue-loading-overlay';
-    import 'vue-loading-overlay/dist/vue-loading.css';
+    /*import Loading from 'vue-loading-overlay';
+    import 'vue-loading-overlay/dist/vue-loading.css';*/
 
     //Component
     import Header from './components/Header.vue'
@@ -38,7 +38,6 @@
             AuthLayout,
             Header,
             Sidebar,
-            Loading
         },
         methods: {
             ...mapActions([
